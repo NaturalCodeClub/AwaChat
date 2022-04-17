@@ -5,9 +5,9 @@ name: AwaChat-Server AutoBuild Task
 
 on:
   push:
-    branches: [ master ]
+    branches: [ server ]
   pull_request:
-    branches: [ master ]
+    branches: [ server ]
 
 jobs:
   build:

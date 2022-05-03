@@ -8,8 +8,11 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.prawa.awachat.Logger;
+import org.prawa.awachat.server.friendmanager.Manager;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.prawa.awachat.server.handler.ServerHandler.users;
 
@@ -19,6 +22,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler{
         PRIVATECHAT,
         MUSICBROADCAST,
         GOLBALMESSAGE,
+        ADDREQUEST
     }
 
     public final static ConcurrentHashMap<Channel,String> channelNames = new ConcurrentHashMap<>();
@@ -71,6 +75,36 @@ public class ChannelHandler extends SimpleChannelInboundHandler{
         users.put(username,user);
     }
 
+    public void forwardFriendRequestToClient(Channel target,String username){
+        JSONObject attach = new JSONObject();
+        attach.put("target",username);
+        attach.put("source",channelNames.get(target));
+        target.writeAndFlush(genMessage(ServerMessageType.ADDREQUEST,attach).toJSONString());
+    }
+
+    public void addFriend(String username,String friend){
+        Manager.friends.get(username).add(friend);
+    }
+
+    public void handleFriendRequest(JSONObject message){
+        JSONObject body = message.getJSONObject("body");
+        int action = body.getIntValue("action");
+        switch (action){
+            case 0:
+                addFriend(body.getString("source"),body.getString("target"));
+                break;
+            case 1:
+                AtomicReference<Channel> channel = new AtomicReference<>();
+                channelNames.forEach((k,v)->{
+                    if(k.equals(body.getString("target"))){
+                         channel.set(k);
+                    }
+                });
+                forwardFriendRequestToClient(channel.get(),body.getString("source"));
+                break;
+        }
+    }
+
     public void handleLogin(String loginMessage, Channel channel) {
         JSONObject message = JSONObject.parseObject(loginMessage);
         String head = message.getString("head");
@@ -101,6 +135,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler{
             if(!users.containsKey(username)) {
                 createUser(username,password);
                 sendChat("User created!", channel,null);
+                Manager.friends.put(username,new CopyOnWriteArrayList<>());
                 sendChat("Welcome !" + username, channel,null);
                 ChannelHandler.channelNames.put(channel,username);
                 channels.add(channel);
@@ -122,6 +157,9 @@ public class ChannelHandler extends SimpleChannelInboundHandler{
         }
         if(head.equals("LOGIN")||head.equals("REGISTER")) {
             handleLogin(message.toJSONString(), channel);
+        }
+        if(head.equals(ServerMessageType.ADDREQUEST.toString())) {
+            handleFriendRequest(message);
         }
     }
 }

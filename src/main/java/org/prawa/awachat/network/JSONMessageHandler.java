@@ -19,6 +19,7 @@ public class JSONMessageHandler {
     private final static ConcurrentHashMap<Channel,String> channelNames = new ConcurrentHashMap<>();
     private final static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     private final static Logger logger = LogManager.getLogger();
+    private final static ConcurrentHashMap<Channel,Channel> channelFriendQueue = new ConcurrentHashMap<>();
 
     public static void onMessageReceive(String msg, Channel channel){
         try {
@@ -54,7 +55,59 @@ public class JSONMessageHandler {
                 if (tag == null){tag = "chat";}
                 Object targetObject = message.getData()[1];
                 handleChat(channel,chatMessage,tag,targetObject);
+                break;
+            case "friendaddrequest":
+                String targetUserName = message.getData()[0].toString();
+                String leaveWord = message.getData()[1].toString();
+                handleFriendRequest(channel,targetUserName,leaveWord);
+            case "firendresponse":
+                String source = message.getData()[0].toString();
+                handleFriendResponse(source,channel);
         }
+    }
+
+    public static void handleFriendResponse(String source,Channel channel){
+        if (!channels.contains(channel)){
+            channel.writeAndFlush(new JSONMessage("channel",new String[]{"not_login"},new Object[1]).buildJson());
+            return;
+        }
+        if (!channelFriendQueue.contains(channel)){
+            channel.writeAndFlush(new JSONMessage("channel",new String[]{"no_such_request"},new Object[1]).buildJson());
+            return;
+        }
+        List<UserEntry> users = UserManager.getUsers();
+        UserEntry sourceUser = null;
+        UserEntry targetUser = null;
+        for (UserEntry user : users){
+            if (user.getUserName().equals(source)){
+                sourceUser = user;
+                user.addFriend(targetUser);
+            }
+            if (user.getUserName().equals(channelNames.get(channel))){
+                user.addFriend(sourceUser);
+                targetUser = user;
+                UserManager.getUsers().remove(user);
+                UserManager.getUsers().add(user);
+            }
+        }
+        channelFriendQueue.remove(channel);
+    }
+
+    public static void handleFriendRequest(Channel channel,String target,String leaveWord){
+        if (!channels.contains(channel)){
+            channel.writeAndFlush(new JSONMessage("channel",new String[]{"not_login"},new Object[1]).buildJson());
+            return;
+        }
+        String sourceUser = channelNames.get(channel);
+        JSONMessage jsonMessage = new JSONMessage("sfriendrequest",5);
+        jsonMessage.setData(0,sourceUser);
+        jsonMessage.setData(1,leaveWord);
+        channelNames.forEach((k,v)->{
+            if (v.equals(target)){
+                k.writeAndFlush(jsonMessage.buildJson());
+                channelFriendQueue.put(k,channel);
+            }
+        });
     }
 
     public static void handleChat(Channel channel,String chatMessage,String tag,Object target){

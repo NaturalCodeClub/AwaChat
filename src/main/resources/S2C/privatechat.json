@@ -1,7 +1,0 @@
-{
-  "head":"PRIVATECHAT",
-  "body":{
-    "sender":"Server",
-    "message":"Hello"
-  }
-}

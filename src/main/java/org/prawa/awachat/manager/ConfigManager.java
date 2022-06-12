@@ -23,6 +23,7 @@ public class ConfigManager {
                 String configs = new String(data);
                 config = gson.fromJson(configs, ConfigEntry.class);
                 fis.close();
+                logger.info("Read config file");
                 return;
             }
             file.createNewFile();
@@ -30,6 +31,7 @@ public class ConfigManager {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(gson.toJson(config).getBytes());
             fos.close();
+            logger.info("Created config file");
         }catch (Exception e){
             logger.error("Error in creating or reading config file!",e);
         }

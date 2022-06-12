@@ -49,6 +49,7 @@ public class UserManager {
                     active.getAndDecrement();
                 }
             });
+            logger.info("Loaded {} users",users.size());
         }
         while (active.get()>0){
             try{
@@ -60,8 +61,9 @@ public class UserManager {
         Thread saveTimer = new Thread(()->{
             while (true){
                 try{
-                    Thread.sleep(10*60);
+                    Thread.sleep(10*60*1000);
                     save();
+                    logger.info("Saved user data");
                 }catch (Exception ignored){
 
                 }

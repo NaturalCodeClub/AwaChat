@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SocketServer {
@@ -39,8 +40,8 @@ public class SocketServer {
                             @Override
                             protected void initChannel(Channel channel){
                                 channel.pipeline()
-                                        .addLast("encoder",new StringEncoder())
-                                        .addLast("decoder",new StringDecoder())
+                                        .addLast("decoder",new StringDecoder(StandardCharsets.UTF_8))
+                                        .addLast("encoder",new StringEncoder(StandardCharsets.UTF_8))
                                         .addLast("handler",new ChannelHandler());
                             }
                         });

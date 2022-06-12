@@ -27,7 +27,7 @@ public class JSONMessage implements Serializable {
         this.data[pos] = data;
     }
 
-    public void setData(int pos,String tag){
+    public void setTag(int pos,String tag){
         this.tags[pos] = tag;
     }
 

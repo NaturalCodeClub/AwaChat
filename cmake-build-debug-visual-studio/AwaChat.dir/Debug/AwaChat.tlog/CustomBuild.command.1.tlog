@@ -1,0 +1,52 @@
+^H:\PROJECT\AWACHAT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\F966E4B78791BA5BDC041A9FE40D68AA\QRC_RES.CPP.RULE
+setlocal
+cd H:\Project\AwaChat\cmake-build-debug-visual-studio
+if %errorlevel% neq 0 goto :cmEnd
+H:
+if %errorlevel% neq 0 goto :cmEnd
+"G:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -E cmake_autorcc H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json Debug
+if %errorlevel% neq 0 goto :cmEnd
+"G:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -E cmake_autorcc H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json Release
+if %errorlevel% neq 0 goto :cmEnd
+"G:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -E cmake_autorcc H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+"G:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -E cmake_autorcc H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^H:\PROJECT\AWACHAT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\E17752D9E23E4932F6E54B0E02E1CE81\AWACHAT_ZH_CN.TS.RULE
+setlocal
+E:\Qt\6.1.3\msvc2019_64\bin\lupdate.exe @H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_zh_CN.ts_lst_file -ts H:/Project/AwaChat/AwaChat_zh_CN.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^H:\PROJECT\AWACHAT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\5202E3E8F0D7F40F21DAC91BA4F468AC\AUTOUIC_(CONFIG).STAMP.RULE
+setlocal
+cd H:\Project\AwaChat\cmake-build-debug-visual-studio
+if %errorlevel% neq 0 goto :cmEnd
+H:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^H:\PROJECT\AWACHAT\CMAKELISTS.TXT
+setlocal
+"G:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -SH:/Project/AwaChat -BH:/Project/AwaChat/cmake-build-debug-visual-studio --check-stamp-file H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

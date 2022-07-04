@@ -1,0 +1,96 @@
+[17:14:28] [main/INFO] [org.prawa.awachat.manager.UserManager]: Loaded 0 users
+[17:14:28] [main/INFO] [org.prawa.awachat.manager.ConfigManager]: Read config file
+[17:14:29] [AwaChatServer-Thread/INFO] [org.prawa.awachat.network.SocketServer]: Server started at 192.168.1.5:2344
+[17:14:34] [Netty Server IO #1/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel connected:[id: 0xe0941a4f, L:/127.0.0.1:2344 - R:/127.0.0.1:53293]
+[17:15:12] [Netty Server IO #1/WARN] [io.netty.channel.DefaultChannelPipeline]: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source) ~[?:1.8.0_291]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:357) ~[netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_291]
+[17:15:12] [Netty Server IO #1/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel disconnected:[id: 0xe0941a4f, L:/127.0.0.1:2344 ! R:/127.0.0.1:53293]
+[17:17:14] [Netty Server IO #2/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel connected:[id: 0x65737d53, L:/127.0.0.1:2344 - R:/127.0.0.1:49347]
+[17:17:26] [Netty Server IO #2/WARN] [io.netty.channel.DefaultChannelPipeline]: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source) ~[?:1.8.0_291]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:357) ~[netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_291]
+[17:17:26] [Netty Server IO #2/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel disconnected:[id: 0x65737d53, L:/127.0.0.1:2344 ! R:/127.0.0.1:49347]
+[17:17:41] [Netty Server IO #3/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel connected:[id: 0xc78eff8c, L:/127.0.0.1:2344 - R:/127.0.0.1:49362]
+[17:17:52] [Netty Server IO #3/WARN] [io.netty.channel.DefaultChannelPipeline]: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source) ~[?:1.8.0_291]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:357) ~[netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_291]
+[17:17:52] [Netty Server IO #3/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel disconnected:[id: 0xc78eff8c, L:/127.0.0.1:2344 ! R:/127.0.0.1:49362]
+[17:24:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[17:31:08] [Netty Server IO #4/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel connected:[id: 0xdefed868, L:/127.0.0.1:2344 - R:/127.0.0.1:59939]
+[17:31:23] [Netty Server IO #4/WARN] [io.netty.channel.DefaultChannelPipeline]: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.IOUtil.read(Unknown Source) ~[?:1.8.0_291]
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source) ~[?:1.8.0_291]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:357) ~[netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) [netty-transport-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.77.Final.jar!/:4.1.77.Final]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_291]
+[17:31:23] [Netty Server IO #4/INFO] [org.prawa.awachat.network.ChannelHandler]: Channel disconnected:[id: 0xdefed868, L:/127.0.0.1:2344 ! R:/127.0.0.1:59939]
+[17:34:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[17:44:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[17:54:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:04:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:14:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:24:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:34:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:44:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[18:54:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[19:04:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[19:14:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data
+[19:24:28] [Save-Timer/INFO] [org.prawa.awachat.manager.UserManager]: Saved user data

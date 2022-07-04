@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\loginwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\MessagePackage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\ChatMessageBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\EWIEGA46WW\qrc_res.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="H:\Project\AwaChat\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\MessagePackage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\ChatMessageBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_Debug\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_Debug\ui_loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_Release\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_Release\ui_loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_MinSizeRel\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_MinSizeRel\ui_loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_RelWithDebInfo\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_RelWithDebInfo\ui_loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\CMakeFiles\f966e4b78791ba5bdc041a9fe40d68aa\qrc_res.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\CMakeFiles\e17752d9e23e4932f6e54b0e02e1ce81\AwaChat_zh_CN.ts.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\CMakeFiles\5202e3e8f0d7f40f21dac91ba4f468ac\autouic_(CONFIG).stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\Project\AwaChat\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="H:\Project\AwaChat\mainwindow.ui" />
+    <None Include="H:\Project\AwaChat\AwaChat_zh_CN.ts" />
+    <None Include="H:\Project\AwaChat\loginwindow.ui" />
+    <None Include="H:\Project\AwaChat\res.qrc" />
+    <None Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\autouic_Debug.stamp" />
+    <None Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\autouic_Release.stamp" />
+    <None Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\autouic_MinSizeRel.stamp" />
+    <None Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\autouic_RelWithDebInfo.stamp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C73EA8CD-1FF5-30C9-8D05-64FDC1ACACFC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{88CFD9C8-105F-347A-B62F-C3206B2B903E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{40352A48-E803-3B38-9BCC-C21F400567A3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

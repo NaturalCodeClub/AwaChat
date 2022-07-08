@@ -78,6 +78,10 @@ public class UserManager {
         usersTemp.add(user);
     }
 
+    public static UserEntry search(String username){
+        return usersTemp.stream().filter(user-> user.getUserName().equals(username)).findFirst().get();
+    }
+
     public static void save(){
         try{
             for (UserEntry entry : filter()){

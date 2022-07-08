@@ -10,26 +10,26 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.prawa.awachat.manager.CommandProcessor;
 
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SocketServer {
     private static final Logger logger = LogManager.getLogger();
     private final AtomicInteger workerId = new AtomicInteger(0);
-    public void runServer(String host ,int port) {
+    public void runServer(String host ,int port) throws InterruptedException {
         Thread serverThread = new Thread(()->{
-            NioEventLoopGroup group = new NioEventLoopGroup(r->{
+            ThreadFactory fac = r->{
                 Thread thread = new Thread(r,"Netty Server IO #"+workerId.getAndIncrement());
                 thread.setDaemon(true);
                 return thread;
-            });
-            NioEventLoopGroup group2 = new NioEventLoopGroup(r->{
-                Thread thread = new Thread(r,"Netty Server IO #"+workerId.getAndIncrement());
-                thread.setDaemon(true);
-                return thread;
-            });
+            };
+            NioEventLoopGroup group = new NioEventLoopGroup(fac);
+            NioEventLoopGroup group2 = new NioEventLoopGroup(fac);
             try {
                 ServerBootstrap bootstrap = new ServerBootstrap();
                 bootstrap.group(group, group2)
@@ -45,7 +45,12 @@ public class SocketServer {
                                         .addLast("handler",new ChannelHandler());
                             }
                         });
-                logger.info("Server started at {}:{}",InetAddress.getLocalHost().getHostAddress(), port);
+                logger.info("Server started at {}:{}.Try to input help to get help!",InetAddress.getLocalHost().getHostAddress(), port);
+                Scanner scanner = new Scanner(System.in);
+                while (scanner.hasNext()){
+                    String command = scanner.nextLine();
+                    CommandProcessor.handleCommand(command);
+                }
                 bootstrap.bind(port).sync();
             }catch (Exception e) {
                 e.printStackTrace();
@@ -53,12 +58,6 @@ public class SocketServer {
         },"AwaChatServer-Thread");
         serverThread.setDaemon(true);
         serverThread.start();
-        try{
-            while(true){
-                Thread.sleep(0,1);
-            }
-        }catch (Exception e){
-            logger.error("Error in waiting server!",e);
-        }
+        serverThread.join();
     }
 }

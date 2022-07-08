@@ -63,12 +63,22 @@ public class JSONMessageHandler {
             case "firendresponse":
                 String source = message.getData()[0].toString();
                 handleFriendResponse(source,channel);
+            case "getuserinfo":
+                String username = channelNames.get(channel);
+                sendUserInfo(username,channel);
         }
     }
 
-    public static void handleFriendResponse(String source,Channel channel){
+    public static boolean checkIsLogined(Channel channel){
         if (!channels.contains(channel)){
             channel.writeAndFlush(new JSONMessage("channel",new String[]{"not_login"},new Object[1]).buildJson());
+            return false;
+        }
+        return true;
+    }
+
+    public static void handleFriendResponse(String source,Channel channel){
+        if (checkIsLogined(channel)){
             return;
         }
         if (!channelFriendQueue.contains(channel)){
@@ -94,8 +104,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleFriendRequest(Channel channel,String target,String leaveWord){
-        if (!channels.contains(channel)){
-            channel.writeAndFlush(new JSONMessage("channel",new String[]{"not_login"},new Object[1]).buildJson());
+        if (checkIsLogined(channel)){
             return;
         }
         String sourceUser = channelNames.get(channel);
@@ -110,9 +119,17 @@ public class JSONMessageHandler {
         });
     }
 
+    public static void sendChat(String s) {
+        JSONMessage message = new JSONMessage("schat", 2);
+        message.setTag(0, "chat");
+        message.setData(0, s);
+        message.setData(1, "severconsole");
+        logger.info("[chat][{}]{}", "server", s);
+        channels.writeAndFlush(message.buildJson());
+    }
+
     public static void handleChat(Channel channel,String chatMessage,String tag,Object target){
-        if (!channels.contains(channel)){
-            channel.writeAndFlush(new JSONMessage("channel",new String[]{"not_login"},new Object[1]).buildJson());
+        if (checkIsLogined(channel)){
             return;
         }
         JSONMessage message = new JSONMessage("schat",2);
@@ -132,13 +149,16 @@ public class JSONMessageHandler {
                     return;
                 }
                 message.setTag(0,"private");
-                message.setTag(1,target.toString());
+                message.setTag(1,channelNames.get(channel));
+                logger.info("[chat][{}][{} -> {}]{}",message.getTags()[0],channelNames.get(channel),target.toString(),chatMessage);
                 message.setData(0,chatMessage);
                 targetChannel.get().writeAndFlush(message.buildJson());
                 break;
             case "chat":
                 message.setTag(0,"chat");
                 message.setData(0,chatMessage);
+                message.setData(1,channelNames.get(channel));
+                logger.info("[chat][{}]{}",channelNames.get(channel),chatMessage);
                 channels.writeAndFlush(message.buildJson());
                 break;
         }
@@ -148,10 +168,12 @@ public class JSONMessageHandler {
         List<UserEntry> users = UserManager.getUsers();
         boolean found = false;
         boolean passed = false;
+        UserEntry currentUserEntry = null;
         for (UserEntry userEntry : users){
             if (userEntry.getUserName().contains(userName)) {
                 found = true;
                 if (userEntry.getPassword().equals(passWord)){
+                    currentUserEntry = userEntry;
                     passed = true;
                     break;
                 }
@@ -168,6 +190,15 @@ public class JSONMessageHandler {
         channels.add(channel);
         channelNames.put(channel,userName);
         channel.writeAndFlush(new JSONMessage("login_response",new String[]{"finished"},new Object[1]).buildJson());
+        JSONMessage userInfo = new JSONMessage("userinfo",1);
+        userInfo.setData(0,currentUserEntry.getJsonData());
+        sendUserInfo(userName,channel);
+    }
+
+    public static void sendUserInfo(String userName,Channel channel){
+        JSONMessage userInfo = new JSONMessage("userinfo",1);
+        userInfo.setData(0,UserManager.search(userName).getJsonData());
+        channel.writeAndFlush(userInfo.buildJson());
     }
 
     public static void handleRegister(Channel channel, String username, String password){
@@ -187,5 +218,6 @@ public class JSONMessageHandler {
         channels.add(channel);
         channelNames.put(channel,username);
         channel.writeAndFlush(new JSONMessage("reg_response",new String[]{"finished"},new Object[1]).buildJson());
+        sendUserInfo(username,channel);
     }
 }

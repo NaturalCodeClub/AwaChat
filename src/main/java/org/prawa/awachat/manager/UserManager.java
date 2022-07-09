@@ -32,7 +32,7 @@ public class UserManager {
             active.getAndIncrement();
             executor.execute(() -> {
                 try {
-                    if (!userFile.getName().equals(".json")){
+                    if (!userFile.getName().endsWith(".json")){
                         logger.warn("Find a file with arg isn't json file!File name:{}",userFile.getName());
                         return;
                     }

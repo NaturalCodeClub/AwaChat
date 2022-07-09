@@ -45,13 +45,14 @@ public class SocketServer {
                                         .addLast("handler",new ChannelHandler());
                             }
                         });
+                bootstrap.bind(port).sync();
                 logger.info("Server started at {}:{}.Try to input help to get help!",InetAddress.getLocalHost().getHostAddress(), port);
                 Scanner scanner = new Scanner(System.in);
                 while (scanner.hasNext()){
                     String command = scanner.nextLine();
                     CommandProcessor.handleCommand(command);
                 }
-                bootstrap.bind(port).sync();
+
             }catch (Exception e) {
                 e.printStackTrace();
             }

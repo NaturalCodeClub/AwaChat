@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.prawa.awachat.manager.UserEntry;
 import org.prawa.awachat.manager.UserManager;
 import org.prawa.awachat.network.codec.JSONMessage;
+
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
@@ -19,7 +21,7 @@ public class JSONMessageHandler {
     private final static ConcurrentHashMap<Channel,String> channelNames = new ConcurrentHashMap<>();
     private final static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     private final static Logger logger = LogManager.getLogger();
-    private final static ConcurrentHashMap<Channel,Channel> channelFriendQueue = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Channel,Channel> channelFriendQueue = new ConcurrentHashMap<>();
 
     public static void onMessageReceive(String msg, Channel channel){
         try {

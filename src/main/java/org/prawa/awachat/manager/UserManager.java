@@ -18,7 +18,8 @@ public class UserManager {
     private static final List<UserEntry> users = new CopyOnWriteArrayList<>();
     private static final List<UserEntry> usersTemp = new CopyOnWriteArrayList<>();
     private static final File dataFolder = new File("users");
-    private static final Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    public static Thread currentDataSaver;
+    public static final Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     private static final Logger logger = LogManager.getLogger();
 
     public static void init() {
@@ -64,16 +65,17 @@ public class UserManager {
         }
         logger.info("Loaded {} users",users.size());
         Thread saveTimer = new Thread(()->{
-            while (true){
+            while (!Thread.currentThread().isInterrupted()){
                 try{
                     Thread.sleep(10*60*1000);
                     save();
                     logger.info("Saved user data");
-                }catch (Exception ignored){
-
+                }catch (InterruptedException ignored){
+                    break;
                 }
             }
         },"Save-Timer");
+        currentDataSaver = saveTimer;
         saveTimer.setDaemon(true);
         saveTimer.start();
     }

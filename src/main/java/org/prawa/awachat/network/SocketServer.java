@@ -11,11 +11,14 @@ import io.netty.handler.codec.string.StringEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.prawa.awachat.manager.CommandProcessor;
+import org.prawa.awachat.manager.ConfigManager;
+import org.prawa.awachat.manager.UserManager;
 
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SocketServer {
@@ -50,9 +53,12 @@ public class SocketServer {
                 Scanner scanner = new Scanner(System.in);
                 while (scanner.hasNext()){
                     String command = scanner.nextLine();
+                    if (command.equals("stop")){
+                        break;
+                    }
                     CommandProcessor.handleCommand(command);
                 }
-
+                onServerStop();
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -60,5 +66,12 @@ public class SocketServer {
         serverThread.setDaemon(true);
         serverThread.start();
         serverThread.join();
+    }
+    public static void onServerStop(){
+        logger.info("Stopping saver and loader thread");
+        ((ThreadPoolExecutor)UserManager.executor).shutdownNow();
+        UserManager.currentDataSaver.interrupt();
+        logger.info("Saving user data");
+        UserManager.save();
     }
 }

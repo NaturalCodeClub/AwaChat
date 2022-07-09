@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UserEntry implements Serializable {
     private static final Gson gson = new Gson();
     private boolean isAdmin;
-    private final List<UserEntry> friends;
+    private final List<String> friends;
     private final String name;
     private String password;
 
@@ -28,15 +28,15 @@ public class UserEntry implements Serializable {
         this.password = newIn;
     }
 
-    public void addFriend(UserEntry userIn){
+    public void addFriend(String userIn){
         this.friends.add(userIn);
     }
 
-    public void removeFriend(UserEntry userIn){
+    public void removeFriend(String userIn){
         this.friends.remove(userIn);
     }
 
-    public List<UserEntry> getFriends(){
+    public List<String> getFriends(){
         return this.friends;
     }
 

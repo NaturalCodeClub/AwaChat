@@ -1,0 +1,6 @@
+{
+  "version":-1,
+  "head":"login_response",
+  "tags":["no_such_user or wrong_password or finished"],
+  "data":[null]
+}

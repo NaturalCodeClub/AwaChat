@@ -91,10 +91,10 @@ public class JSONMessageHandler {
         for (UserEntry user : users){
             if (user.getUserName().equals(source)){
                 sourceUser = user;
-                user.addFriend(targetUser);
+                user.addFriend(targetUser.getUserName());
             }
             if (user.getUserName().equals(channelNames.get(channel))){
-                user.addFriend(sourceUser);
+                user.addFriend(sourceUser.getUserName());
                 targetUser = user;
                 UserManager.getUsers().remove(user);
                 UserManager.getUsers().add(user);
@@ -108,7 +108,7 @@ public class JSONMessageHandler {
             return;
         }
         String sourceUser = channelNames.get(channel);
-        JSONMessage jsonMessage = new JSONMessage("sfriendrequest",5);
+        JSONMessage jsonMessage = new JSONMessage("sfriendrequest",2);
         jsonMessage.setData(0,sourceUser);
         jsonMessage.setData(1,leaveWord);
         channelNames.forEach((k,v)->{

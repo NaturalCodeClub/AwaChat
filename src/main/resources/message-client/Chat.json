@@ -1,0 +1,6 @@
+{
+  "version":-1,
+  "head":"chat",
+  "tags":["your chat(chat or private)","your target(When the tag is chat,It can be empty)"],
+  "data":["your chat message"]
+}

@@ -192,7 +192,7 @@ public class JSONMessageHandler {
         channel.writeAndFlush(new JSONMessage("login_response",new String[]{"finished"},new Object[1]).buildJson());
         JSONMessage userInfo = new JSONMessage("userinfo",1);
         userInfo.setData(0,currentUserEntry.getJsonData());
-        sendUserInfo(userName,channel);
+        //sendUserInfo(userName,channel);
     }
 
     public static void sendUserInfo(String userName,Channel channel){
@@ -218,6 +218,6 @@ public class JSONMessageHandler {
         channels.add(channel);
         channelNames.put(channel,username);
         channel.writeAndFlush(new JSONMessage("reg_response",new String[]{"finished"},new Object[1]).buildJson());
-        sendUserInfo(username,channel);
+        //sendUserInfo(username,channel);
     }
 }

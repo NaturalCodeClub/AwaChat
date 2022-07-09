@@ -25,12 +25,17 @@ public class UserManager {
         if (dataFolder.mkdirs()) {
             logger.info("User data folder created");
         }
+        logger.info("Files in user data floder:{}",dataFolder.listFiles().length);
         File[] userFiles = dataFolder.listFiles();
         AtomicInteger active = new AtomicInteger(0);
         for (File userFile : userFiles) {
+            active.getAndIncrement();
             executor.execute(() -> {
-                active.getAndIncrement();
                 try {
+                    if (!userFile.getName().equals(".json")){
+                        logger.warn("Find a file with arg isn't json file!File name:{}",userFile.getName());
+                        return;
+                    }
                     FileInputStream stream = new FileInputStream(userFile);
                     byte[] data = new byte[stream.available()];
                     stream.read(data);
@@ -49,7 +54,6 @@ public class UserManager {
                     active.getAndDecrement();
                 }
             });
-            logger.info("Loaded {} users",users.size());
         }
         while (active.get()>0){
             try{
@@ -58,6 +62,7 @@ public class UserManager {
                 logger.error(e.getMessage());
             }
         }
+        logger.info("Loaded {} users",users.size());
         Thread saveTimer = new Thread(()->{
             while (true){
                 try{

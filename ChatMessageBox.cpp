@@ -46,6 +46,20 @@ void ChatMessageBox::paintEvent(QPaintEvent *event)
         int str_len=this->text.length();
         int endchar_num=0;
         //qDebug()<<str_len<<Qt::endl;
+        while(1)
+        {
+            for (int i = 0; i < text.length(); ++i) {
+                if(text[i]=='\n')
+                {
+                    text[i]=' ';
+                    continue;
+                }
+            }
+            break;
+        }
+        //int addtion=text.count("？");
+        if(text.contains("？"))
+            text.replace("？","?");
         if(str_len<=10)
         {
             QRect font_rect=fm.boundingRect(text);
@@ -63,16 +77,7 @@ void ChatMessageBox::paintEvent(QPaintEvent *event)
             int i;
             for(i=0;i<text.length();++i)
             {
-                if(text[i]=='\n')
-                {
-                    if(i==line_start)  {
-                        i=i+1;
-                        line_start=i;
-                        continue;
-                    }
-                    lines.push_back(text.mid(line_start,i-line_start));
-                    line_start=i+1;
-                }else if((i+1-line_start)%10==0){
+                if((i+1-line_start)%10==0){
                     lines.push_back(text.mid(line_start,i+1-line_start));
                     line_start=i+1;
                 }
@@ -182,6 +187,19 @@ int ChatMessageBox::getItemHeight()
 void ChatMessageBox::updatedata()
 {
     paintEvent(nullptr);
+}
+
+void ChatMessageBox::Create(QPixmap image, bool ondir, QString text,QListWidget *list)
+{
+    ChatMessageBox *box=new ChatMessageBox();
+    box->setAvatar(image);
+    box->setOndir(ondir);
+    box->setText(text);
+    QListWidgetItem *item=new QListWidgetItem();
+    box->updatedata();
+    item->setSizeHint(QSize(list->width()-5,box->getItemHeight()));
+    list->addItem(item);
+    list->setItemWidget(item,box);
 }
 
 ChatMessageBox::~ChatMessageBox()

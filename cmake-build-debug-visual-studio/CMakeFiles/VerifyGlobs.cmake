@@ -42,9 +42,11 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "H:/Project/AwaChat/*.cpp")
 set(OLD_GLOB
   "H:/Project/AwaChat/ChatMessageBox.cpp"
+  "H:/Project/AwaChat/Message.cpp"
   "H:/Project/AwaChat/MessagePackage.cpp"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/EWIEGA46WW/qrc_res.cpp"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_ChatMessageBox.cpp"
+  "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_Message.cpp"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_MessagePackage.cpp"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_loginwindow.cpp"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_mainwindow.cpp"
@@ -76,6 +78,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "H:/Project/AwaChat/*.h")
 set(OLD_GLOB
   "H:/Project/AwaChat/ChatMessageBox.h"
+  "H:/Project/AwaChat/Message.h"
   "H:/Project/AwaChat/MessagePackage.h"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/ui_LoginWindow.h"
   "H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/ui_mainwindow.h"

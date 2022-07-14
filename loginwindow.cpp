@@ -7,6 +7,7 @@
 #include "loginwindow.h"
 #include "ui_LoginWindow.h"
 #include <QAction>
+#include <QMessageBox>
 
 
 LoginWindow::LoginWindow(QWidget *parent) :
@@ -25,14 +26,17 @@ LoginWindow::LoginWindow(QWidget *parent) :
 
 void LoginWindow::OnButLoginClicked()
 {
-    mainWindow->show();
-    return;
+    //mainWindow->show();
+    //return;
     ui->but_login->setDisabled(true);
     if(mainWindow->login(ui->edit_user->text(),ui->edit_pwd->text()))
     {
         mainWindow->show();
         this->hide();
-    }else ui->but_login->setDisabled(false);
+    }else{
+        ui->but_login->setDisabled(false);
+        QMessageBox::information(this,"提示","账号不存在或密码错误");
+    }
 }
 
 LoginWindow::~LoginWindow() {

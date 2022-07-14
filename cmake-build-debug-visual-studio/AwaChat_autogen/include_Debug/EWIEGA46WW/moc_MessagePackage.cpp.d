@@ -60,4 +60,5 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qtypeinfo.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qutf8stringview.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qvarlengtharray.h \
-  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qversiontagging.h
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qversiontagging.h \
+  H:/Project/AwaChat/Message.h

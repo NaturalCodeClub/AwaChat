@@ -23,7 +23,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         ${TS_FILES}
         loginwindow.cpp loginwindow.h loginwindow.ui
-        res.qrc MessagePackage.cpp MessagePackage.h ChatMessageBox.cpp ChatMessageBox.h)
+        res.qrc MessagePackage.cpp MessagePackage.h ChatMessageBox.cpp ChatMessageBox.h Message.cpp Message.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(AwaChat

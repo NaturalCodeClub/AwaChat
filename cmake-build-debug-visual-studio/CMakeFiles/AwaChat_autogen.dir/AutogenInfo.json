@@ -245,6 +245,12 @@
 			null
 		],
 		[
+			"H:/Project/AwaChat/Message.h",
+			"MU",
+			"EWIEGA46WW/moc_Message.cpp",
+			null
+		],
+		[
 			"H:/Project/AwaChat/MessagePackage.h",
 			"MU",
 			"EWIEGA46WW/moc_MessagePackage.cpp",
@@ -345,6 +351,7 @@
 	"SOURCES" : 
 	[
 		[ "H:/Project/AwaChat/ChatMessageBox.cpp", "MU", null ],
+		[ "H:/Project/AwaChat/Message.cpp", "MU", null ],
 		[ "H:/Project/AwaChat/MessagePackage.cpp", "MU", null ],
 		[ "H:/Project/AwaChat/loginwindow.cpp", "MU", null ],
 		[ "H:/Project/AwaChat/main.cpp", "MU", null ],

@@ -27,3 +27,29 @@ QByteArray MessagePackage::LoginPackage(QString user, QString pwd)
     QByteArray str=doc.toJson();
     return str;
 }
+
+QByteArray MessagePackage::GetInfoPackage()
+{
+    QJsonObject object;
+    object.insert("version",-1);
+    object.insert("head","getuserinfo");
+    QJsonDocument doc;
+    doc.setObject(object);
+    return doc.toJson();
+}
+
+QByteArray MessagePackage::ChatPackage(Message *msg, QString msender)
+{
+    QJsonObject object;
+    object.insert("version",-1);
+    object.insert("head","chat");
+    QJsonArray tags,data;
+    tags.push_back("private");
+    tags.push_back(msender);
+    data.push_back(msg->text);
+    object.insert("tags",tags);
+    object.insert("data",data);
+    QJsonDocument doc;
+    doc.setObject(object);
+    return doc.toJson();
+}

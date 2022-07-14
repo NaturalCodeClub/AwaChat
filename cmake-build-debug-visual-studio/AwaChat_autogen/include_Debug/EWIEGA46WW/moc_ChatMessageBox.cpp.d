@@ -4,6 +4,7 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/QRect \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/QSize \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/QSizeF \
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qabstractitemmodel.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qalgorithms.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qanystringview.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qarraydata.h \
@@ -33,10 +34,12 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qhashfunctions.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qiodevice.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qiodevicebase.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qitemselectionmodel.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qiterable.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qiterator.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qline.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qlist.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qlocale.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qlogging.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qmap.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qmargins.h \
@@ -58,6 +61,7 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qpropertyprivate.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qrect.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qrefcount.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/qregularexpression.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qscopedpointer.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qset.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qshareddata.h \
@@ -98,6 +102,7 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qfont.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qfontinfo.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qfontmetrics.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtGui/qicon.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qimage.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qinputdevice.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qkeysequence.h \
@@ -117,12 +122,29 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qtgui-config.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qtguiglobal.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qtransform.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtGui/qvalidator.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qvector2d.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qvectornd.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qwindowdefs.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtGui/qwindowdefs_win.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/QListWidget \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/QListWidgetItem \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/QWidget \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qabstractitemdelegate.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qabstractitemview.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qabstractscrollarea.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qabstractslider.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qabstractspinbox.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qframe.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qlistview.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qlistwidget.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qrubberband.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qsizepolicy.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qslider.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qstyle.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qstyleoption.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtabbar.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtabwidget.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtwidgets-config.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtwidgetsglobal.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qwidget.h

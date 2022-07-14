@@ -12,7 +12,8 @@
 	"INPUTS" : 
 	[
 		"H:/Project/AwaChat/images/icon_user.png",
-		"H:/Project/AwaChat/images/icon_pwd.png"
+		"H:/Project/AwaChat/images/icon_pwd.png",
+		"H:/Project/AwaChat/images/icon_firends.png"
 	],
 	"LOCK_FILE" : "H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : true,

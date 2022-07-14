@@ -19,6 +19,9 @@
     <ClCompile Include="H:\Project\AwaChat\ChatMessageBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="H:\Project\AwaChat\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\EWIEGA46WW\qrc_res.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +46,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H:\Project\AwaChat\ChatMessageBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Project\AwaChat\Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H:\Project\AwaChat\cmake-build-debug-visual-studio\AwaChat_autogen\include_Debug\ui_mainwindow.h">

@@ -1,4 +1,5 @@
 H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug/EWIEGA46WW/moc_mainwindow.cpp: H:/Project/AwaChat/mainwindow.h \
+  E:/Qt/6.1.3/msvc2019_64/include/QtCore/QObject \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qalgorithms.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qanystringview.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtCore/qarraydata.h \
@@ -111,4 +112,5 @@ H:/Project/AwaChat/cmake-build-debug-visual-studio/AwaChat_autogen/include_Debug
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtabwidget.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtwidgets-config.h \
   E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qtwidgetsglobal.h \
-  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qwidget.h
+  E:/Qt/6.1.3/msvc2019_64/include/QtWidgets/qwidget.h \
+  H:/Project/AwaChat/Message.h

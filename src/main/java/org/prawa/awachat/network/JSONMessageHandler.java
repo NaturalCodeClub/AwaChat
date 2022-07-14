@@ -28,6 +28,10 @@ public class JSONMessageHandler {
             JSONMessage msg1 = gson.fromJson(msg, JSONMessage.class);
             handle(msg1,channel);
         }catch (Exception e){
+            if (e instanceof ArrayIndexOutOfBoundsException){
+                logger.warn("May the message has some wrong?");
+                return;
+            }
             logger.error("Error in processing message",e);
         }
     }
@@ -55,7 +59,7 @@ public class JSONMessageHandler {
                 String tag = message.getTags()[0];
                 if (chatMessage == null){chatMessage = "";}
                 if (tag == null){tag = "chat";}
-                Object targetObject = message.getData()[1];
+                Object targetObject = message.getTags()[1];
                 handleChat(channel,chatMessage,tag,targetObject);
                 break;
             case "friendaddrequest":

@@ -1,0 +1,7 @@
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+cmake-build-debug-visual-studio/
+.idea/

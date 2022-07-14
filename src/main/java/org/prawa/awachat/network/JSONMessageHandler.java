@@ -84,7 +84,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleFriendResponse(String source,Channel channel){
-        if (checkIsLogined(channel)){
+        if (!checkIsLogined(channel)){
             return;
         }
         if (!channelFriendQueue.contains(channel)){
@@ -110,7 +110,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleFriendRequest(Channel channel,String target,String leaveWord){
-        if (checkIsLogined(channel)){
+        if (!checkIsLogined(channel)){
             return;
         }
         String sourceUser = channelNames.get(channel);
@@ -135,7 +135,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleChat(Channel channel,String chatMessage,String tag,Object target){
-        if (checkIsLogined(channel)){
+        if (!checkIsLogined(channel)){
             return;
         }
         JSONMessage message = new JSONMessage("schat",2);

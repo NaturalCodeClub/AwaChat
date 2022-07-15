@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtNetwork/QTcpSocket>
+#include <QSoundEffect>
 #include <vector>
 #include <map>
 #include "Message.h"
@@ -30,6 +31,8 @@ private:
     QString user;
     std::vector<QString> frineds;
     std::map<QString,std::vector<Message*>>history;
+    //std::vector<Activity*>activities;
     QString now_target;
+    QSoundEffect *soundEffect;
 };
 #endif // MAINWINDOW_H

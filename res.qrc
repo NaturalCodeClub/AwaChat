@@ -3,5 +3,6 @@
         <file>images/icon_user.png</file>
         <file>images/icon_pwd.png</file>
         <file>images/icon_firends.png</file>
+        <file>sound/message_tips.wav</file>
     </qresource>
 </RCC>

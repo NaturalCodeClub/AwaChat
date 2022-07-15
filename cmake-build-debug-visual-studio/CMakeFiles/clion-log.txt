@@ -1,8 +1,0 @@
-"D:\Program Files\JetBrains\CLion 2022.1.3\bin\cmake\win\bin\cmake.exe" -G "Visual Studio 16 2019" -S H:\Project\AwaChat -B H:\Project\AwaChat\cmake-build-debug-visual-studio
--- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.19044.
--- Could NOT find Vulkan (missing: Vulkan_LIBRARY Vulkan_INCLUDE_DIR) 
--- Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY OPENSSL_INCLUDE_DIR) 
--- Could NOT find WrapOpenSSLHeaders (missing: WrapOpenSSLHeaders_FOUND) 
--- Configuring done
--- Generating done
--- Build files have been written to: H:/Project/AwaChat/cmake-build-debug-visual-studio

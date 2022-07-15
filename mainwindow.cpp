@@ -5,6 +5,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+
 #include "ChatMessageBox.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     socket=new QTcpSocket();
+    soundEffect=new QSoundEffect(this);
     connect(socket,&QTcpSocket::readyRead,this,&MainWindow::ReadData);
     this->ui->chat_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->ui->chat_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -39,6 +41,7 @@ bool MainWindow::login(QString user, QString pwd)
         {
             if(result_login)
                 this->user=user;
+            else QMessageBox::information(this,"提示","账号不存在或密码错误");
             return result_login;
         }
     }
@@ -99,7 +102,8 @@ void MainWindow::ReadData()
                     ChatMessageBox::Create(QPixmap("://images/icon_user.png"),false,data[0].toString(),this->ui->chat_list);
                     this->ui->chat_list->scrollToBottom();
                 }
-
+                soundEffect->setSource(QUrl::fromLocalFile("://sound/message_tips.wav"));
+                soundEffect->play();
             }
         }
     }
@@ -128,7 +132,7 @@ void MainWindow::OnButSend()
     Message *msg=Message::Create(now_target,true,text);
     history[now_target].push_back(msg);
     this->ui->chat_list->scrollToBottom();
-    QMessageBox::information(nullptr,"Msg",MessagePackage::ChatPackage(msg,now_target));
+   // QMessageBox::information(nullptr,"Msg",MessagePackage::ChatPackage(msg,now_target));
     socket->write(MessagePackage::ChatPackage(msg,now_target));
 }
 

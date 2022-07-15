@@ -1,3 +1,0 @@
-H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/AwaChat.dir
-H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/ALL_BUILD.dir
-H:/Project/AwaChat/cmake-build-debug-visual-studio/CMakeFiles/ZERO_CHECK.dir

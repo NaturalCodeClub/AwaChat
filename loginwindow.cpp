@@ -35,7 +35,7 @@ void LoginWindow::OnButLoginClicked()
         this->hide();
     }else{
         ui->but_login->setDisabled(false);
-        QMessageBox::information(this,"提示","账号不存在或密码错误");
+
     }
 }
 

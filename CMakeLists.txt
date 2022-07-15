@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(AwaChat VERSION 0.1 LANGUAGES CXX)
+project(AwaChat VERSION 1.2 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -10,9 +10,9 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_PREFIX_PATH "E:\\Qt\\6.1.3\\msvc2019_64\\lib\\cmake")
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network LinguistTools)
+set(CMAKE_PREFIX_PATH "E:\\Qt\\6.2.4\\msvc2019_64\\lib\\cmake")
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network Multimedia LinguistTools)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network Multimedia LinguistTools)
 
 set(TS_FILES AwaChat_zh_CN.ts)
 
@@ -23,7 +23,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         ${TS_FILES}
         loginwindow.cpp loginwindow.h loginwindow.ui
-        res.qrc MessagePackage.cpp MessagePackage.h ChatMessageBox.cpp ChatMessageBox.h Message.cpp Message.h)
+        res.qrc MessagePackage.cpp MessagePackage.h ChatMessageBox.cpp ChatMessageBox.h Message.cpp Message.h Activity.cpp Activity.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(AwaChat
@@ -52,7 +52,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(AwaChat PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(AwaChat PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Multimedia)
 
 set_target_properties(AwaChat PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

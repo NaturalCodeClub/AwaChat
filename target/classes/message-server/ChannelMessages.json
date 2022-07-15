@@ -1,0 +1,6 @@
+{
+  "version":-1,
+  "head":"channel",
+  "tags":["target_not_found or invalid_target or no_such_request(friend response),not_login"],
+  "data":["null(When the tag isn't channel_disconnected)"]
+}

@@ -7,6 +7,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.prawa.awachat.manager.ConfigManager;
 import org.prawa.awachat.manager.UserEntry;
 import org.prawa.awachat.manager.UserManager;
 import org.prawa.awachat.network.codec.JSONMessage;
@@ -14,17 +15,23 @@ import org.prawa.awachat.network.codec.JSONMessage;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class JSONMessageHandler {
     private final static Gson gson = new Gson();
+    private final static AtomicInteger onlineUserCount = new AtomicInteger(0);
     private final static ConcurrentHashMap<Channel,String> channelNames = new ConcurrentHashMap<>();
     private final static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     private final static Logger logger = LogManager.getLogger();
-    private static ConcurrentHashMap<Channel,Channel> channelFriendQueue = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Channel,Channel> channelFriendQueue = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Channel,Long> channelLastMessageSentTime = new ConcurrentHashMap<>();
 
     public static void onMessageReceive(String msg, Channel channel){
         try {
+            if (isOutOfLimit(channel)) {
+                channel.writeAndFlush(new JSONMessage("channel",new String[]{"message_sent_too_fast"},new Object[1]).buildJson());
+            }
             JSONMessage msg1 = gson.fromJson(msg, JSONMessage.class);
             handle(msg1,channel);
         }catch (Exception e){
@@ -36,10 +43,28 @@ public class JSONMessageHandler {
         }
     }
 
+    private static boolean isOutOfLimit(Channel channel){
+        if (!channelLastMessageSentTime.contains(channel)){
+            channelLastMessageSentTime.put(channel,System.currentTimeMillis());
+            return false;
+        }
+        if (System.currentTimeMillis() - channelLastMessageSentTime.get(channel) < ConfigManager.config.messageSpeedLimitMS){
+            channelLastMessageSentTime.replace(channel,System.currentTimeMillis());
+            return true;
+        }
+        channelLastMessageSentTime.replace(channel,System.currentTimeMillis());
+        return false;
+    }
+
     public static void onChannelDisconnect(Channel channel){
         channels.writeAndFlush(new JSONMessage("channel",new String[]{"channel_disconnected"},new Object[]{channelNames.get(channel)}).buildJson());
         channels.remove(channel);
         channelNames.remove(channel);
+        onlineUserCount.getAndDecrement();
+    }
+
+    public static void onChannelConnected(Channel channel){
+        onlineUserCount.getAndIncrement();
     }
 
     private static void handle(JSONMessage message,Channel channel){
@@ -154,15 +179,23 @@ public class JSONMessageHandler {
                     channel.writeAndFlush(new JSONMessage("channel",new String[]{"target_not_found"},new Object[1]).buildJson());
                     return;
                 }
+                //聊天消息类型
                 message.setTag(0,"private");
+                //对方的名称
                 message.setTag(1,channelNames.get(channel));
+                UserEntry sourceChannel = UserManager.search(channelNames.get(channel));
+                //是不是好友
+                message.setTag(2, String.valueOf(sourceChannel.getFriends().contains(sourceChannel.getUserName())));
                 logger.info("[chat][{}][{} -> {}]{}",message.getTags()[0],channelNames.get(channel),target.toString(),chatMessage);
+                //具体的内容
                 message.setData(0,chatMessage);
                 targetChannel.get().writeAndFlush(message.buildJson());
                 break;
             case "chat":
                 message.setTag(0,"chat");
+                //消息内容
                 message.setData(0,chatMessage);
+                //对方名称
                 message.setData(1,channelNames.get(channel));
                 logger.info("[chat][{}]{}",channelNames.get(channel),chatMessage);
                 channels.writeAndFlush(message.buildJson());
@@ -198,7 +231,6 @@ public class JSONMessageHandler {
         channel.writeAndFlush(new JSONMessage("login_response",new String[]{"finished"},new Object[1]).buildJson());
         JSONMessage userInfo = new JSONMessage("userinfo",1);
         userInfo.setData(0,currentUserEntry.getJsonData());
-        //sendUserInfo(userName,channel);
     }
 
     public static void sendUserInfo(String userName,Channel channel){
@@ -224,6 +256,5 @@ public class JSONMessageHandler {
         channels.add(channel);
         channelNames.put(channel,username);
         channel.writeAndFlush(new JSONMessage("reg_response",new String[]{"finished"},new Object[1]).buildJson());
-        //sendUserInfo(username,channel);
     }
 }

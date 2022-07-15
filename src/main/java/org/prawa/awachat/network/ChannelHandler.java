@@ -20,5 +20,6 @@ public class ChannelHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx){
         logger.info("Channel connected:"+ctx.channel());
+        JSONMessageHandler.onChannelConnected(ctx.channel());
     }
 }

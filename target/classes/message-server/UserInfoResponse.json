@@ -1,0 +1,13 @@
+{
+  "version":-1,
+  "head":"userinfo",
+  "tags":[null],
+  "data":[
+    {
+      "isAdmin":false,
+      "friends":[],
+      "name":"username",
+      "password":"password"
+    }
+  ]
+}

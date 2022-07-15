@@ -15,6 +15,7 @@ import org.prawa.awachat.manager.ConfigManager;
 import org.prawa.awachat.manager.UserManager;
 
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.concurrent.ThreadFactory;
@@ -48,7 +49,7 @@ public class SocketServer {
                                         .addLast("handler",new ChannelHandler());
                             }
                         });
-                bootstrap.bind(port).sync();
+                bootstrap.bind(new InetSocketAddress(host,port)).sync();
                 logger.info("Server started at {}:{}.Try to input help to get help!",InetAddress.getLocalHost().getHostAddress(), port);
                 Scanner scanner = new Scanner(System.in);
                 while (scanner.hasNext()){
@@ -68,10 +69,11 @@ public class SocketServer {
         serverThread.join();
     }
     public static void onServerStop(){
-        logger.info("Stopping saver and loader thread");
-        ((ThreadPoolExecutor)UserManager.executor).shutdownNow();
+        logger.info("Stopping saver");
         UserManager.currentDataSaver.interrupt();
-        logger.info("Saving user data");
+        logger.info("Saving user data and loader thread");
         UserManager.save();
+        UserManager.executor.shutdownNow();
+        System.exit(0);
     }
 }

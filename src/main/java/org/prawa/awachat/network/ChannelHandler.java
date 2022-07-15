@@ -22,4 +22,9 @@ public class ChannelHandler extends SimpleChannelInboundHandler<String> {
         logger.info("Channel connected:"+ctx.channel());
         JSONMessageHandler.onChannelConnected(ctx.channel());
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        logger.error(cause);
+    }
 }

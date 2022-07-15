@@ -1,6 +1,7 @@
 package org.prawa.awachat.network;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
@@ -14,6 +15,7 @@ import org.prawa.awachat.network.codec.JSONMessage;
 
 import java.io.File;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,8 +37,8 @@ public class JSONMessageHandler {
             JSONMessage msg1 = gson.fromJson(msg, JSONMessage.class);
             handle(msg1,channel);
         }catch (Exception e){
-            if (e instanceof ArrayIndexOutOfBoundsException){
-                logger.warn("May the message has some wrong?");
+            if (e instanceof ArrayIndexOutOfBoundsException || e instanceof JsonSyntaxException){
+                logger.warn("Wrong message detected!");
                 return;
             }
             logger.error("Error in processing message",e);
@@ -116,7 +118,7 @@ public class JSONMessageHandler {
             channel.writeAndFlush(new JSONMessage("channel",new String[]{"no_such_request"},new Object[1]).buildJson());
             return;
         }
-        List<UserEntry> users = UserManager.getUsers();
+        Set<UserEntry> users = UserManager.getUsers();
         UserEntry sourceUser = null;
         UserEntry targetUser = null;
         for (UserEntry user : users){
@@ -204,7 +206,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleLogin(Channel channel,String userName,String passWord){
-        List<UserEntry> users = UserManager.getUsers();
+        Set<UserEntry> users = UserManager.getUsers();
         boolean found = false;
         boolean passed = false;
         UserEntry currentUserEntry = null;
@@ -231,6 +233,7 @@ public class JSONMessageHandler {
         channel.writeAndFlush(new JSONMessage("login_response",new String[]{"finished"},new Object[1]).buildJson());
         JSONMessage userInfo = new JSONMessage("userinfo",1);
         userInfo.setData(0,currentUserEntry.getJsonData());
+        logger.info("{} has logged in",userName);
     }
 
     public static void sendUserInfo(String userName,Channel channel){
@@ -240,7 +243,7 @@ public class JSONMessageHandler {
     }
 
     public static void handleRegister(Channel channel, String username, String password){
-        List<UserEntry> users = UserManager.getUsers();
+        Set<UserEntry> users = UserManager.getUsers();
         boolean found = false;
         for (UserEntry userEntry : users){
             if (userEntry.getUserName().contains(username)) {
@@ -256,5 +259,6 @@ public class JSONMessageHandler {
         channels.add(channel);
         channelNames.put(channel,username);
         channel.writeAndFlush(new JSONMessage("reg_response",new String[]{"finished"},new Object[1]).buildJson());
+        logger.info("{} has logged in",username);
     }
 }

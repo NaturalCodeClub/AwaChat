@@ -6,6 +6,8 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import org.apache.logging.log4j.LogManager;
@@ -44,9 +46,11 @@ public class SocketServer {
                             @Override
                             protected void initChannel(Channel channel){
                                 channel.pipeline()
-                                        .addLast("decoder",new StringDecoder(StandardCharsets.UTF_8))
-                                        .addLast("encoder",new StringEncoder(StandardCharsets.UTF_8))
-                                        .addLast("handler",new ChannelHandler());
+                                        .addLast(new LengthFieldBasedFrameDecoder(32768, 0, 2, 0, 2))
+                                        .addLast(new LengthFieldPrepender(2))
+                                        .addLast(new StringDecoder(StandardCharsets.UTF_8))
+                                        .addLast(new StringEncoder(StandardCharsets.UTF_8))
+                                        .addLast(new ChannelHandler());
                             }
                         });
                 bootstrap.bind(new InetSocketAddress(host,port)).sync();

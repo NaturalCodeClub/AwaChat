@@ -6,7 +6,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -32,7 +31,8 @@ public class MessageEncoder extends MessageToMessageEncoder<CharSequence> {
             }
             final String head = "head$$";
             final String end = "end$$";
-            ByteBuf buffer = ByteBufUtil.encodeString(channelHandlerContext.alloc(), CharBuffer.wrap(head +s+end), Charset.defaultCharset());
+            String body = String.valueOf(s.length())+"#"+s;
+            ByteBuf buffer = ByteBufUtil.encodeString(channelHandlerContext.alloc(), CharBuffer.wrap(head +body+end), Charset.defaultCharset());
             list.add(buffer);
         }
     }

@@ -45,9 +45,18 @@ public class MessageDecoder extends MessageToMessageDecoder<CharSequence> {
         }
     }
 
-    public String processMessage(String s){
+    public String clearTag(String s){
         char[] chars = new char[s.toCharArray().length-11];
         System.arraycopy(s.toCharArray(), 5, chars, 0, s.toCharArray().length - 5 - 5);
         return new String(chars);
+    }
+
+    public String processMessage(String s){
+        String nonClear = clearTag(s);
+        String[] ss = nonClear.split("#");
+        if (Integer.parseInt(ss[0]) == ss[1].length()){
+            return ss[1];
+        }
+        return null;
     }
 }

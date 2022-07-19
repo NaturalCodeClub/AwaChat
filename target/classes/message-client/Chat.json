@@ -1,6 +1,6 @@
 {
   "version":-1,
   "head":"chat",
-  "tags":["your chat(chat or private)","your target(When the tag is chat,It can be empty)"],
+  "tags":["your chat(chat or private)","your target(When the tag is chat,It can be empty)","false or true(If is private and the source user is your friend)"],
   "data":["your chat message"]
 }

@@ -38,7 +38,7 @@ public class JSONMessageHandler {
             handle(msg1,channel);
         }catch (Exception e){
             if (e instanceof ArrayIndexOutOfBoundsException || e instanceof JsonSyntaxException){
-                logger.warn("Wrong message detected!");
+                logger.warn("Wrong message detected!Message is: {}",msg);
                 return;
             }
             logger.error("Error in processing message",e);

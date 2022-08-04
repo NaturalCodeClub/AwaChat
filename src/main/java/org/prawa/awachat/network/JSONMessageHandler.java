@@ -165,7 +165,7 @@ public class JSONMessageHandler {
         if (!checkIsLogined(channel)){
             return;
         }
-        JSONMessage message = new JSONMessage("schat",2);
+        JSONMessage message = new JSONMessage("schat",3);
         switch (tag){
             case "private":
                 if (target == null){

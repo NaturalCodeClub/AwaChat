@@ -1,25 +1,25 @@
-package org.prawa.awachat.network.codec;
+package org.prawa.awachat.network.messages;
 
 import com.google.gson.Gson;
 import java.io.Serializable;
 
-public class JSONMessage implements Serializable {
+public class JSONChannelMessage implements Serializable {
     private static final Gson gson = new Gson();
     private final int version = -1;
     private final String head;
     private final String[] tags;
     private final Object[] data;
-    public JSONMessage(String head,String[] tags,Object[] dats){
+    public JSONChannelMessage(String head, String[] tags, Object[] dats){
         this.head = head;
         this.tags = tags;
         this.data = dats;
     }
 
-    public JSONMessage(String head){
+    public JSONChannelMessage(String head){
         this(head,new String[256],new Object[256]);
     }
 
-    public JSONMessage(String head,int l){
+    public JSONChannelMessage(String head, int l){
         this(head,new String[l],new Object[l]);
     }
 

@@ -23,16 +23,18 @@ public:
     void SelectedFriendTarget(int row);
     void OnButSend();
     ~MainWindow();
-
+    std::vector<QString> frineds;
 private:
     Ui::MainWindow *ui;
     QTcpSocket *socket;
-    bool result_login;
+    bool result_login=false;
     QString user;
-    std::vector<QString> frineds;
     std::map<QString,std::vector<Message*>>history;
-    //std::vector<Activity*>activities;
     QString now_target;
     QSoundEffect *soundEffect;
+    int last_length;
+    QByteArray data_buffer;
+    void WriteToServer(QByteArray bf);
+    int HandleReveData(QByteArray &data);
 };
 #endif // MAINWINDOW_H

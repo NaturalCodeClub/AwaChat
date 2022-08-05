@@ -3,6 +3,7 @@
 #include "MessagePackage.h"
 #include <QMessageBox>
 #include <QJsonDocument>
+#include <QDataStream>
 #include <QJsonObject>
 #include <QJsonArray>
 
@@ -34,7 +35,7 @@ bool MainWindow::login(QString user, QString pwd)
         QMessageBox::information(nullptr,"提示","无法连接服务器请检查网络设置");
         return false;
     }
-    socket->write(MessagePackage::LoginPackage(user,pwd));
+    WriteToServer(MessagePackage::LoginPackage(user,pwd));
     if(socket->waitForBytesWritten(5000))
     {
         if(socket->waitForReadyRead(5000))
@@ -50,13 +51,30 @@ bool MainWindow::login(QString user, QString pwd)
 
 void MainWindow::ReadData()
 {
-    QByteArray buffer;
-    buffer=socket->readAll();
-   // QMessageBox::information(nullptr,"Message",buffer);
-    if(!buffer.isEmpty())
+    data_buffer.append(socket->readAll());
+    int rt_len=1;
+    while(rt_len>0)
+    {
+        rt_len= HandleReveData(data_buffer);
+        if(rt_len>0)
+            data_buffer.remove(0,rt_len+4);
+    }
+}
+
+int MainWindow::HandleReveData(QByteArray &buffer)
+{
+    QByteArray bd;
+//    raw=socket->readAll();
+    QDataStream stream(&buffer,QIODevice::ReadOnly);
+    int data_length;
+    if(buffer.size()<4)
+        return 0;
+    stream>>bd;
+    data_length=bd.size();
+    if(!bd.isEmpty())
     {
         //ui->textEdit->setText(ui->textEdit->toPlainText()+tr(buffer));
-        QJsonDocument doc=QJsonDocument::fromJson(buffer);
+        QJsonDocument doc=QJsonDocument::fromJson(bd);
         QJsonObject obj=doc.object();
         QString head=obj["head"].toString();
         QJsonArray tags=obj["tags"].toArray();
@@ -64,12 +82,12 @@ void MainWindow::ReadData()
         if(head=="login_response")
         {
             if(tags.isEmpty())
-                return;
+                return data_length;
             QString result=tags[0].toString();
             if(result=="finished")
             {
                 result_login = true;
-                socket->write(MessagePackage::GetInfoPackage());
+                //WriteToServer(MessagePackage::GetInfoPackage());
             }else result_login= false;
         }else if(head=="userinfo")
         {
@@ -106,7 +124,9 @@ void MainWindow::ReadData()
                 soundEffect->play();
             }
         }
+        return data_length;
     }
+    return -1;
 }
 
 void MainWindow::SelectedFriendTarget(int row)
@@ -133,7 +153,16 @@ void MainWindow::OnButSend()
     history[now_target].push_back(msg);
     this->ui->chat_list->scrollToBottom();
    // QMessageBox::information(nullptr,"Msg",MessagePackage::ChatPackage(msg,now_target));
-    socket->write(MessagePackage::ChatPackage(msg,now_target));
+    QByteArray bf=MessagePackage::ChatPackage(msg,now_target);
+    WriteToServer(bf);
+}
+
+void MainWindow::WriteToServer(QByteArray bf)
+{
+    QByteArray data;
+    QDataStream stream(&data,QIODevice::WriteOnly);
+    stream<<bf;
+    socket->write(data);
 }
 
 MainWindow::~MainWindow()
